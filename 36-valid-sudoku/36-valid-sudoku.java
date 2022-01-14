@@ -34,13 +34,9 @@ class Solution {
         {
             for(int j=0;j<col;j+=3)
             {
-                         System.out.println(i+" ,  "+j);
-
                     if(!checkGrid(board,i,j))
                         return false;
             }      
-        
-        System.out.println("---");
         }
         
         return true;
@@ -64,7 +60,6 @@ class Solution {
        
             }
         }
-        
         return  true ;
     }
     
