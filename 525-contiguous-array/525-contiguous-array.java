@@ -23,7 +23,6 @@ class Solution {
             } else {
                 sumToIndex.put(sum, i);
             }
-            System.out.println(max+"   "+sum);            
         }
         return max;
     }
