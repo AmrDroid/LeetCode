@@ -2,16 +2,12 @@ class Solution {
     public boolean validateStackSequences(int[] pushed, int[] popped) {
         
         Stack<Integer> s=new Stack();
-        
         int ind=0;
-        for(int i:pushed) {
-            
-            s.push(i);
-          //  System.out.println(Arrays.toString(s.toArray()));
-            
+
+        for(int i:pushed) {    
+            s.push(i);    
             while(!s.isEmpty()&&s.peek()==popped[ind])
             {
-        // System.out.println(s.peek()+"  >> "+ind);
                 s.pop();
                 ind++;
             }
@@ -23,6 +19,5 @@ class Solution {
         }
         
         return s.isEmpty();
-        
     }
 }
