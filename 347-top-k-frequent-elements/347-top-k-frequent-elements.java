@@ -2,6 +2,61 @@ import java.util.*;
 import java.lang.*;
  
 class Solution {
+    
+    
+ 
+public    int[] topKFrequent(int []nums, int k) {
+    
+    Map<Integer,Integer> map=new HashMap();
+        
+        for(int i : nums)
+        {
+            if(map.containsKey(i))
+                map.put(i,map.get(i)+1);
+            else
+                map.put(i,1);
+        }
+    
+           Queue<Map.Entry<Integer, Integer>> heap = new PriorityQueue(k, new Comparator<Map.Entry<Integer, Integer>>(){
+           
+               @Override
+            public int compare(Map.Entry<Integer, Integer> a, Map.Entry<Integer, Integer> b)
+            {
+                return Integer.compare(a.getValue(),b.getValue());
+            }
+                
+        });
+
+        
+        
+        int arr[]=new int[k];
+    
+
+           for(Map.Entry<Integer, Integer> entry : map.entrySet())
+          {
+            if(heap.size()<k)
+                heap.offer(entry);
+            else if(heap.peek().getValue()<entry.getValue())
+            {
+                heap.poll();
+                heap.offer(entry);
+            }
+                
+        }
+        int i=0;
+          for(Map.Entry<Integer, Integer> entry : heap)
+        {
+            arr[i++]=entry.getKey();
+        }
+        
+        
+        
+        return arr;
+       
+    }
+
+    
+    /*
     public int[] topKFrequent(int[] nums, int k) {
         
         HashMap<Integer,Integer> m = new HashMap();
@@ -49,6 +104,6 @@ class Solution {
         return temp;
     }
     
-    
+    */
   
 }
