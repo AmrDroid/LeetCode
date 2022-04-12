@@ -18,7 +18,6 @@ class Solution {
          r=board.length;
          c=board[0].length;
         
-        int res[][]=new int [r][c];
         
         for(int i=0;i<r;i++)
         {
@@ -48,8 +47,10 @@ class Solution {
     private int aliveNeighbors(int[][] board, int rows, int cols, int i, int j) {
 	    int alive = 0;
 	    for (int dir[] : DIRS) {
-		    var neighborX = i + dir[0];
+		    
+            var neighborX = i + dir[0];
 		    var neighborY = j + dir[1];
+            
 		    if (isValid(neighborX, neighborY))
 		    	alive += board[neighborX][neighborY] & 1;
     	    }
