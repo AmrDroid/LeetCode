@@ -1,57 +1,27 @@
 class Solution {
     public int[][] generateMatrix(int n) {
-        int matrix[][]=new int[n][n];
-        
-        spiralOutput(matrix, n, 0,1);
-        
-        return matrix;
-    }
+         int[][] matrix = new int[n][n];
+            int top = 0, bottom = n - 1, left = 0, right = n - 1;
+            int val = 1;
+            while (val <= n * n) {
+                for (int i = left; i <= right; i++)
+                    matrix[top][i] = val++; // fill top row
+                top++;
 
-    private void spiralOutput(int[][] matrix,int n, int index,int count) {
-        
-        if (n == 0)
-            return;
-        
-        if(index>n*n)return;
-    
-        System.out.println(count);
-        
-        int i, j;
-        // (index, index) -> (index, n - index - 1)
-        
-        for (i = index, j = index; j < n - index; j++) {
-            matrix[i][j]=count;
-            count++;
-        }
-        
-        for (i = index + 1, j = n - index - 1; i < n - index; i++) {
-          
-            matrix[i][j]=count;
-            count++;
-        
-        }
-        
-        // (n - index - 1, n - index - 2) -> (n - index - 1, index)
-        // avoid duplicate
-        
-        if (index != n - index - 1) {
-            for (i = n - index - 1, j = n - index - 2; j >= index; j--) {
-            matrix[i][j]=count;
-            count++;
-        
+                for (int i = top; i <= bottom; i++)
+                    matrix[i][right] = val++; // fill right column
+                right--;
+
+                for (int i = right; i >= left; i--)
+                    matrix[bottom][i] = val++; // fill bottom raw
+                bottom--;
+
+                for (int i = bottom; i >= top; i--)
+                    matrix[i][left] = val++; // fill right column
+                left++;
             }
-        }
-        
-        // (n - index - 1, index) -> (index + 1, index)
-        // avoid duplicate
-        if (index != n - index - 1) {
-            for (i = n - index - 2, j = index; i > index; i--) {
-         matrix[i][j]=count;
-            count++;
-        
-            }
-        }
-        spiralOutput(matrix, n,index+1,count);
+
+            return matrix;
     }
         
 }
