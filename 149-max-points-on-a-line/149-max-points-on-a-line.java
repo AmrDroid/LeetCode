@@ -3,7 +3,8 @@ class Solution {
           // Write your code here.
     int len = points.length, maxLines = 1;
 
-    for (int i = 0; i < len; i++) {
+    int max=0;
+    for (int i = 0; i < len-max; i++) {
     
         int[] p1 = points[i];
 
@@ -18,6 +19,8 @@ class Solution {
       }
 
       maxLines = Math.max(maxLines, maxSlope(slopes));
+        if(max>maxLines)
+            max=maxLines;
     }
 
     return maxLines;
