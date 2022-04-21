@@ -24,6 +24,15 @@ class Solution {
         
         boolean match =  (i<n) && (s.charAt(i)==p.charAt(j) || p.charAt(j)=='.');
         
+        
+        if(j<m&&p.charAt(j)=='*')
+        {
+            dp[i][j]= dfs(i+1,j,n,m,s,p,dp);        
+            return dp[i][j];
+            
+        }
+        
+        
         if(j+1<m&& p.charAt(j+1)=='*')
         {
             dp[i][j] = (match && dfs(i+1,j,n,m,s,p,dp))  
