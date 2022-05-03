@@ -2,7 +2,8 @@ class Solution {
     public int findUnsortedSubarray(int[] array) {
         
          // Write your code here.
-    int len = array.length;
+   
+        int len = array.length;
 
         
         if(len<=1)return 0;
@@ -15,6 +16,7 @@ class Solution {
       minUnsorted = Math.min(minUnsorted, array[i]);
       maxUnsorted = Math.max(maxUnsorted, array[i]);
     }
+        
 
     if (minUnsorted == Integer.MAX_VALUE) return 0;
 
