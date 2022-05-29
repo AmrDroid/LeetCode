@@ -1,5 +1,36 @@
 class Solution {
-    public int maxProduct(String[] words) {
+    
+    
+      public int maxProduct(String[] words) {
+        int n = words.length;
+        int[] word_int = new int[n];
+        int[] word_len = new int[n];
+      
+          for(int i = 0; i < n; ++i){
+          
+              String w = words[i];
+              int _len = w.length();
+              int w_int = 0;
+              
+              for(int j = 0; j < _len; ++j)
+                  w_int |= 1 << (w.charAt(j) - 'a');
+            
+              word_int[i] = w_int;
+              word_len[i] = _len;
+        }
+        
+        int max_product = 0;
+        for(int i = 0; i < n-1; ++i){
+            for(int j = i+1; j < n; ++j){
+                if((word_int[i] & word_int[j]) == 0)
+                    max_product = Math.max(max_product, word_len[i]*word_len[j]);
+            }
+        }
+        return max_product;
+    }
+    
+    
+   /* public int maxProduct(String[] words) {
 
         Set set=new HashSet<>(); //Create Set for storing String Element
         int n=words.length;
@@ -39,5 +70,5 @@ class Solution {
     }
         
     return max;
-    }
+    }*/
 }
