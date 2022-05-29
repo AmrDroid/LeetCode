@@ -9,33 +9,35 @@ class Solution {
         
 
         for(int i=0;i<n-1;i++){                           // For accessing ith string from string array
-        
+       
+           String s1=words[i];
+           int s1length=s1.length();
+            
+            for(int k=0;k<s1length;k++)        // ith string elements add to set 
+                 set.add(s1.charAt(k));
+                
             for(int j=i+1;j<n;j++){                      // for accessing i+1 to n string (Used for comparing with ith string)
             
- 
-                String s1=words[i];
                 String s2=words[j];
-                
-                int s1length=s1.length();
-                int s2length=s2.length();
             
-                for(int k=0;k<s1length;k++)        // ith string elements add to set 
-                    set.add(s1.charAt(k));
-                
+                int s2length=s2.length();
+              
                 int m=0;
                 
                  while(m<s2.length())
-                    {
-                   if(set.contains(s2.charAt(m)))   // Check for jth string element present or not in ith string
-                      break;
-                    m++;
-                    }
+                 {              
+                     if(set.contains(s2.charAt(m)))   // Check for jth string element present or not in ith string
+                         break;
+                     m++;
+                 }
                 
-               if(m==s2length)                               //  Condition for  jth string element not present in ith string
-                  max=Math.max(max,s1length*s2length);   
+                 if(m==s2length)                               //  Condition for  jth string element not present in ith string
+                     max=Math.max(max,s1length*s2length);   
         }
+            
         set.clear();                                         // clear set because now we will compare new ith element 
     }
+        
     return max;
     }
 }
