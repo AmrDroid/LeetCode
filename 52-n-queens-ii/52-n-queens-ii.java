@@ -10,7 +10,6 @@ class Solution {
             Arrays.fill(c, '.');
         }
         
-        
         helper(0, board);
         
         return res.size();
