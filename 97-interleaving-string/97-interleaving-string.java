@@ -1,7 +1,8 @@
 class Solution {
     public boolean isInterleave(String s1, String s2, String s3) {
     
-        
+    
+     
         int n= s1.length();
         int m= s2.length();
         int s= s3.length();
@@ -21,8 +22,7 @@ class Solution {
                 
                 if(j<m && i+j<s3.length()&& s2.charAt(j)==s3.charAt(i+j) && dp[i][j+1])
                     dp[i][j]=true;
-                
-                
+                                
                 System.out.print(dp[i][j]+"     ");
             }
                             System.out.println();
@@ -33,3 +33,4 @@ class Solution {
     return dp[0][0];
     }
 }
+
