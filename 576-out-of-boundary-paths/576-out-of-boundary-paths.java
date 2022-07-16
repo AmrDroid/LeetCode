@@ -18,6 +18,8 @@ class Solution {
        if(dp[r][c][N]!=-1)
            return dp[r][c][N];
        
+       if(N==0)return 0;
+       
        long res=0;
        res += find(m,n,r+1,c,N-1,dp)%MOD;
        res += find(m,n,r-1,c,N-1,dp)%MOD;
