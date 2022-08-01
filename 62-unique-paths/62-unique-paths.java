@@ -13,7 +13,7 @@ class Solution {
         
         
         
-           int N = n + m - 2; // how much steps we need to do
+     int N = n + m - 2; // how much steps we need to do
         int k = m - 1; // number of steps that need to go down
         double res = 1;
         
