@@ -5,38 +5,28 @@ class Solution {
     
     public int[] topKFrequent(int[] nums, int k) {
      
-        Map<Integer, Integer> hm = new HashMap<>();
         
-        List<Integer>[] bucket = new List[nums.length + 1];
+        List<Integer> res= new ArrayList();
+        Map<Integer,Integer> hm=new HashMap();
         
-        int[] res = new int[k];
+        for(int i=0;i<nums.length;i++)
+            hm.put(nums[i],hm.getOrDefault(nums[i],0)+1);            
         
-        int ind = 0;
-
-        for (int num : nums) {
-            hm.put(num, hm.getOrDefault(num, 0) + 1);
+        
+        PriorityQueue<Integer> pq=new PriorityQueue((a,b)->hm.get(a)-hm.get(b));
+        
+        for(int i: hm.keySet())
+        {
+            pq.add(i);            
+            if(pq.size()>k)
+                pq.poll();
         }
-
-        for (int key : hm.keySet()) {
-            
-            int frequency = hm.get(key);
-            
-            if (bucket[frequency] == null) bucket[frequency] = new ArrayList<>();
-            
-            bucket[frequency].add(key);
-            
+        
+        while(!pq.isEmpty())
+        {
+            res.add(pq.poll());
         }
-
-		// here we are running loop from behind, 
-		//bcz we have to return elements with high frequency first
-        for (int pos = bucket.length - 1; pos >= 0; pos--) {
-            if (bucket[pos] != null) {
-                for (int i = 0; i < bucket[pos].size() && ind < k; i++) {
-                    res[ind++] = bucket[pos].get(i);
-                }
-            }
-        }
-        return res;
+        return res.stream().sorted().mapToInt(i->i).toArray();
     }
  /*
 public    int[] topKFrequent(int []nums, int k) {
