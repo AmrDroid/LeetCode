@@ -2,33 +2,41 @@ class Solution {
     public int maxValue(int n, int index, int maxSum) {
         
            
-        int left = index, right = index;
+ 
+        int s = 1 , e = maxSum ; 
         
-        int ans = 1;
-        
-        maxSum -= n;
+        int ans = -1; 
 
-        while(true) {
-        
-            if(left == 0 && right == n - 1) {
-                ans += maxSum / n;
-                break;
+        while(s<=e){
+            
+            int mid = (s+e)/2 ;
+
+            long k = mid ;          // to avoid overflow
+            
+            long sum = k ; 
+
+            long left_sum = (index-k+1) +  (k*(k-1))/2 ; 
+            
+            if(k-1> index){         // not enough cols on left of index
+                int left_cols = index ; 
+                left_sum = ((k-1)*k)/2 - ((k-left_cols-1)*(k-left_cols))/2; 
             }
 
-            maxSum -= (right - left + 1);
-            
-            if(maxSum >= 0) {
-            
-                ans += 1;
-                left = left - 1 > 0 ? left - 1 : 0;
-                
-                right = right + 1 < n ? right + 1 : n - 1;
-            
+
+            long right_sum = (k*(k-1))/2 + (n- index- k) ; 
+            if(n-index-k<0){            // not enough cols on right of index
+                int right_cols = n- (index+1) ; 
+                right_sum = (k*(k-1))/2 - ((k-right_cols-1)*(k-right_cols))/2 ; 
             }
-            else break;
+
+            sum += (left_sum + right_sum) ; 
+            if(sum<= maxSum){
+                s = mid+1 ; 
+                ans = mid ; 
+            }
+            else e = mid-1 ; 
         }
-
-        return ans;
+    return ans ;   
         
     }
 }
